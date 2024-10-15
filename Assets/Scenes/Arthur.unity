@@ -497,7 +497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAIIewIZR67cgIAACwFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMmS2jAQ/RVK50DZDGtuCTBMDgzUMKm5+CKsNlYhSy5JZi3+PS3Zxg5zonm9vX7d8o1waXKIrdJLzdlKMSA/O8TZ5Eencb7Bme6V3PIr1DFfnNnUBVEf80EtV4iHLs2oDKzm8S+5Fy44QLCQPFE6W7A9zJSxBuGECgPo0sq6bInQrUPO+NOdupQLWv2xs65oTYPOHc0YpAXdhD4Cey+TQTgZjqeLbjCuciY9zO+PR8PhohsOfH4hY0GzHJgbpinzMqnr9H2YxDGrCDdSrITgpuJI7CX3GmzzFDQ4ERinOLLnFfSmCKTA96l19drZ6yQxYCvWml7mXKN2ZVnyW5WCZtQcSmJHKgrXaFRSL2uuvrm7oXcnWmVvddswcC1syuPDB73E1NiW4G143jAPvTwnKg50J+ArBfmulloVkqHT6sKlFgb68+bvY7JZCvGhwUuqT2CRf19bvV03w90Pf54Jnu28kIMS2Arl9fZHARo38wcJ+5MxVQlEHYu/Bj7pvn1bleOVa2PRVU0pHb2dKrQLJQuvmZumsDOlJXi4Ip2DpMJeNljGPm/wyddq++R5pe4VVc0rX/04nlI83MQHwZNro06PZZlUnVZg0nVhBZfQkHaOd9RppqQsD6ytSZ22LXRC41bavuDs/9Mio2EwTEJIduEU4tFk1B1NaD8I2bQfDMaDJBwSf3tc4pxUbEqilTy4NdkUl3hn9cels9Q098fOND0t+TVTLcm5TNQ21gByXVZ4EAeNTfBVsgXjKNAWrOXS75vcIiJUfAAWPQpFftLF2WoaNVUikvOjsg6JyMx/TSLi4MctbzQcOZxc87rYndz/AVBLAwQUAAAICAAACCHsb2Z4jG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0kpmpgWmaYWpakqFlarKZhZmumUWikYFhiqWRgYm5SZqhqVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAACCHsCGUeu3ICAAAsBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAACCHsb2Z4jG0AAAB4AAAACQAkAAAAAAAAAAAAAAC/AgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAHcDAAAAAA==
+    dataString: UEsDBBQAAAgIAAAIIewx/YTccQIAAC0FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VMuS2jAQ/BVK50DZLM/cEmDZHFioJam9+CKsMVYhSy5J5ln8e0ayjR22ckL0TLdmeka+ES5NDrFVeqk5WykG5HuHuDP51mmCb3CmeyW3/Ap1zidnNnVJ1Od8UMsV4qGjGZWB1Tz+IffCJQcIFpInSmcLtoeZMtYgnFBhAENaWceWCN065Iw/3amjXPDUH7vTFU/ToHPHYwzSgm5SH4m9l8kgnAzH00U3GFecSQ/5/fFoOFx0w4HnFzIWNMuBuWYamZdJrdP3aRLbrDJcS7ESgpuqRmIvufdgm6egwZnAOMWWfV1Bb4pACnyfWqfXZq+TxICtqtb0MucavStlyU9VGppRcygLO1JRuItGZeml5upLuBv6cKJV9lZfGwbuCpvy+PBBLzE1tmV4G543lYfenhMVB7oT8JmCfFdLrQrJMGh14aiFgf68+fvobJZCfGjwstQnsMi/jq2eruvh7ps/zwTPdt7IQQlshfJ++6UAjZP5hQX7lTGVBKKuij8GftN9e7eqwCvXxmKo6lK68naq0C6VLLxnrpvCzpSWoNsKOUgq7GWDOvZ5hE+x/7NeqXtG1e1VrH4dTxQPN/lB8BTaqNNjWiZVpxWYdF1YwSU0VrvAOxo1U1KWG9ZuqaZtC53QuEXbF5z9u1tkNAyGSQjJLpxCPJqMuqMJ7Qchm/aDwXiQhEPil49L7JOKTVloZQ+OTTbiEhet/rp0lprmftuZpqclv2bKNJlcJmobawC5LhUehYPGS/BZsgXjaNAWrOXSD5zcIiJUfAAWPYQi3+nibDWNGpWI5PyorEMiMvOfk4g4+LHMGw1HDid3eS12J/e/UEsDBBQAAAgIAAAIIexvZniMbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrSSmamBaZphalqSoWVqspmFma6ZRaKRgWGKpZGBiblJmqGpUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAIIewx/YTccQIAAC0FAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAIIexvZniMbQAAAHgAAAAJACQAAAAAAAAAAAAAAL4CAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAdgMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -1040,6 +1040,8 @@ GameObject:
   - component: {fileID: 857540320}
   - component: {fileID: 857540319}
   - component: {fileID: 857540318}
+  - component: {fileID: 857540322}
+  - component: {fileID: 857540321}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1144,8 +1146,8 @@ MonoBehaviour:
   radius: 0.5
   height: 1
   canMove: 1
-  maxSpeed: 1
-  gravity: {x: NaN, y: NaN, z: NaN}
+  maxSpeed: 10
+  gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1153,7 +1155,7 @@ MonoBehaviour:
   repathRateCompatibility: NaN
   canSearchCompability: 0
   orientation: 1
-  enableRotation: 1
+  enableRotation: 0
   autoRepath:
     mode: 2
     interval: 0.5
@@ -1198,6 +1200,84 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!50 &857540321
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857540315}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: 86bce4a877e0d3a4b8622d7fe31ae96b, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!60 &857540322
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857540315}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 0.8828125}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.25, y: 0.43359375}
+      - {x: -0.5, y: 0}
+      - {x: -0.25, y: -0.43359375}
+      - {x: 0.25, y: -0.43359375}
+      - {x: 0.5, y: 0}
+      - {x: 0.25, y: 0.43359375}
+  m_UseDelaunayMesh: 0
 --- !u!1 &955644498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1882,7 +1962,7 @@ Transform:
   m_GameObject: {fileID: 1937123424}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.092639, y: 6.2030444, z: 0.040196434}
+  m_LocalPosition: {x: 7.64, y: 5.74, z: 0.040196434}
   m_LocalScale: {x: 40, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
