@@ -1,21 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer), typeof(Animator))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+[RequireComponent(typeof(SpriteRenderer), typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
-    // Public
     [Header("References")]
     [SerializeField] new Rigidbody2D rigidbody;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Animator animator;
+    [SerializeField] GameObject hat;
 
-    [Header("Gameplay")]
+    [Header("General")]
     [SerializeField] float speed = 5;
 
 
-    // Private
     bool canMoove = true;
 
     private void Awake()
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        hat = GetComponentsInChildren<SpriteRenderer>().Where(component => component.gameObject != this.gameObject).First().gameObject;
     }
 
     void Start()
@@ -48,6 +50,27 @@ public class PlayerController : MonoBehaviour
 
         // if (rb.velocity.x < 0) spriteRenderer.flipX = true;
         // else if (rb.velocity.x > 0) spriteRenderer.flipX = false;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SendHat();
+        }
+    }
+
+    void SendHat()
+    {
+        if (hat)
+        {
+            hat.transform.SetParent(null, true);
+            hat.transform.localScale = Vector3.one;
+
+            Vector2 offset = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position; 
+            Quaternion direction = Quaternion.LookRotation(Vector3.forward, offset); // * Quaternion.Euler(0, 0, 90);
+            hat.transform.SetPositionAndRotation(hat.transform.position, direction);
+
+            hat.GetComponent<HatProjectile>().StartMoving();
+            hat = null;
+        }
     }
 
     public void SetCanMoove(bool value)
