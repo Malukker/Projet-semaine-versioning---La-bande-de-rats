@@ -23,6 +23,7 @@ public class EnemyPatrol : MonoBehaviour
     [SerializeField] private float _patrolSpeed, _chaseSpeed;
     [SerializeField] private float _aggressionTime;
     private float _aggressionTimeProgress = 0;
+    [SerializeField] private float _idlingTimeOnHat; 
 
     private Vector3[] _sightConeAngles;
     private RaycastHit2D _raycastHit;
@@ -31,9 +32,15 @@ public class EnemyPatrol : MonoBehaviour
         patrolling,
         idling,
         wary,
-        chasing
+        chasing,
+        fetching,
     };
     private EnemyState _enemyState;
+
+    private void Awake()
+    {
+        HatProjectile.HitWall += HatDetected;
+    }
 
     void Start()
     {
@@ -97,6 +104,9 @@ public class EnemyPatrol : MonoBehaviour
                 break;
             case EnemyState.chasing:
                 Chase();
+                break;
+            case EnemyState.fetching:
+                FetchingHat();
                 break;
             default:
                 break;
@@ -174,6 +184,30 @@ public class EnemyPatrol : MonoBehaviour
         {
             _enemyState = EnemyState.wary;
         }
+    }
+
+    void HatDetected(HatProjectile hat)
+    {
+        if(Vector2.Distance(hat.gameObject.transform.position, transform.position) > _detectionRadius)
+        {
+            _destinationSetter.target = hat.gameObject.transform;
+            _enemyState = EnemyState.fetching;
+        }
+    }
+
+    void FetchingHat()
+    {
+        if (Vector2.Distance(transform.position, _destinationSetter.target.gameObject.transform.position) < 0.5f)
+        {
+            StartCoroutine(IdleOnHat());
+            _enemyState = EnemyState.idling;
+        }
+    }
+
+    IEnumerator IdleOnHat()
+    {
+        yield return new WaitForSeconds(_idlingTimeOnHat);
+        _enemyState = EnemyState.patrolling;
     }
 
     private void OnDrawGizmos()

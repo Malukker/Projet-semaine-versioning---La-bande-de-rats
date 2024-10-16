@@ -17,7 +17,7 @@ public class HatProjectile : MonoBehaviour
 
     bool move = false;
 
-    public static event Action<Vector2> HitWall;
+    public static event Action<HatProjectile> HitWall;
 
     void Awake()
     {
@@ -67,6 +67,6 @@ public class HatProjectile : MonoBehaviour
 
     void OnHitWall(Vector2 position)
     {
-        HitWall?.Invoke(position);
+        HitWall?.Invoke(this);
     }
 }
