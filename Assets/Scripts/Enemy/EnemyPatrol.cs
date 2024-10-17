@@ -26,6 +26,9 @@ public class EnemyPatrol : MonoBehaviour
     [SerializeField] private float _idlingTimeOnHat; 
 
     private Vector3[] _sightConeAngles;
+
+    private Transform _player;
+
     private enum EnemyState
     {
         patrolling,
@@ -43,6 +46,7 @@ public class EnemyPatrol : MonoBehaviour
 
     void Start()
     {
+        _player = GameManager.Instance.Player.transform;
         _sightConeAngles = new Vector3[_maxSightAngle];
 
         _destinationSetter.target = _points[_currentPatrolObjective];
@@ -53,23 +57,6 @@ public class EnemyPatrol : MonoBehaviour
     {
         UpdateAngles();
         UpdatePathfinding();
-        DebuggerRaycast();
-    }
-
-    void DebuggerRaycast()
-    {
-        RaycastHit2D raycastHit = Physics2D.Raycast
-                (
-                origin: transform.position,
-                direction: GameObject.FindGameObjectWithTag("Player").transform.position,
-                distance: Mathf.Infinity,
-                layerMask: _layers
-                );
-
-        if(raycastHit.collider != null && raycastHit.collider.gameObject.layer == 7)
-        {
-            Debug.Log("In Sight");
-        }
     }
 
     void UpdateAngles()
@@ -78,16 +65,16 @@ public class EnemyPatrol : MonoBehaviour
         {
             _sightConeAngles[i] = new Vector3
                 (
-                transform.position.x + _detectionRadius * Mathf.Cos(i * Mathf.Deg2Rad
+                transform.position.x + Mathf.Cos(i * Mathf.Deg2Rad
                 + transform.rotation.eulerAngles.z * Mathf.Deg2Rad
-                + (90 - _maxSightAngle/2) * Mathf.Deg2Rad)
+                + (90 - _maxSightAngle / 2) * Mathf.Deg2Rad)
                 ,
-                transform.position.y + _detectionRadius * Mathf.Sin(i * Mathf.Deg2Rad
+                transform.position.y + Mathf.Sin(i * Mathf.Deg2Rad
                 + transform.rotation.eulerAngles.z * Mathf.Deg2Rad
                 + (90 - _maxSightAngle / 2) * Mathf.Deg2Rad)
                 ,
                 0
-                );
+                ) - transform.position;
         }
     }
 
@@ -126,7 +113,6 @@ public class EnemyPatrol : MonoBehaviour
                 distance: _detectionRadius,
                 layerMask: _layers
                 );
-
             if (raycastHit.collider != null && raycastHit.collider.gameObject.layer == 7)
             {
                 _enemyState = EnemyState.wary;
@@ -188,9 +174,9 @@ public class EnemyPatrol : MonoBehaviour
 
     void Chase()
     {
-        _destinationSetter.target = GameObject.FindGameObjectWithTag("Player").transform;
+        _destinationSetter.target = _player;
         _aiPath.maxSpeed = _chaseSpeed;
-        if (Vector2.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) > _detectionRadius)
+        if (Vector2.Distance(transform.position, _player.position) > _detectionRadius)
         {
             _aggressionTimeProgress += Time.deltaTime;
         }
@@ -231,17 +217,10 @@ public class EnemyPatrol : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        if (_sightConeAngles != null)
-        {
-            foreach (Vector3 vector in _sightConeAngles)
-            {
-                Gizmos.DrawLine(transform.position, vector);
-            }
-        }
 
-        foreach(Transform point in _points)
+        foreach (Transform point in _points)
         {
-            Gizmos.DrawSphere(point.position, .5f);
+            Gizmos.DrawSphere(point.position, 0.5f);
         }
     }
 }
