@@ -26,7 +26,6 @@ public class EnemyPatrol : MonoBehaviour
     [SerializeField] private float _idlingTimeOnHat; 
 
     private Vector3[] _sightConeAngles;
-    private RaycastHit2D _raycastHit;
     private enum EnemyState
     {
         patrolling,
@@ -45,12 +44,32 @@ public class EnemyPatrol : MonoBehaviour
     void Start()
     {
         _sightConeAngles = new Vector3[_maxSightAngle];
+
+        _destinationSetter.target = _points[_currentPatrolObjective];
+        _aiPath.maxSpeed = _patrolSpeed;
     }
 
     void Update()
     {
         UpdateAngles();
         UpdatePathfinding();
+        DebuggerRaycast();
+    }
+
+    void DebuggerRaycast()
+    {
+        RaycastHit2D raycastHit = Physics2D.Raycast
+                (
+                origin: transform.position,
+                direction: GameObject.FindGameObjectWithTag("Player").transform.position,
+                distance: Mathf.Infinity,
+                layerMask: _layers
+                );
+
+        if(raycastHit.collider != null && raycastHit.collider.gameObject.layer == 7)
+        {
+            Debug.Log("In Sight");
+        }
     }
 
     void UpdateAngles()
@@ -72,31 +91,13 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 
-    void CheckForPlayerInSight()
-    {
-        for (int i = 0; i < _sightConeAngles.Length; i++)
-        {
-            _raycastHit = Physics2D.Raycast
-                (
-                origin: transform.position,
-                direction: _sightConeAngles[i],
-                distance: _detectionRadius,
-                layerMask: _layers
-                );
-            if (_raycastHit.collider != null && _raycastHit.collider.gameObject.layer == 7)
-            {
-                _enemyState = EnemyState.wary;
-            }
-        }
-    }
-
     void UpdatePathfinding()
     {
         switch (_enemyState)
         {
             case EnemyState.patrolling:
-                Patrol();
                 CheckForPlayerInSight();
+                Patrol();
                 _detectionTimeProgress = 0;
                 break;
             case EnemyState.wary:
@@ -114,11 +115,28 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 
+    void CheckForPlayerInSight()
+    {
+        for (int i = 0; i < _sightConeAngles.Length; i++)
+        {
+            RaycastHit2D raycastHit = Physics2D.Raycast
+                (
+                origin: transform.position,
+                direction: _sightConeAngles[i],
+                distance: _detectionRadius,
+                layerMask: _layers
+                );
+
+            if (raycastHit.collider != null && raycastHit.collider.gameObject.layer == 7)
+            {
+                _enemyState = EnemyState.wary;
+                return;
+            }
+        }
+    }
+
     void Patrol()
     {
-        _destinationSetter.target = _points[_currentPatrolObjective];
-        _aiPath.maxSpeed = _patrolSpeed;
-
         if (Vector2.Distance(_points[_currentPatrolObjective].position, transform.position) < .25f)
         {
             ChangePatrolObjective();
@@ -136,34 +154,34 @@ public class EnemyPatrol : MonoBehaviour
     IEnumerator IdleOnPatrolEnd()
     {
         yield return new WaitForSeconds(_idlingTime);
+        _destinationSetter.target = _points[_currentPatrolObjective];
+        _aiPath.maxSpeed = _patrolSpeed;
         _enemyState = EnemyState.patrolling;
     }
 
     void DetectingMode()
     {
-        _aiPath.enabled = false;
+        _aiPath.maxSpeed = 0;
 
         _detectionTimeProgress += Time.deltaTime;
         if (_detectionTimeProgress >= _detectionTime)
         {
             for (int i = 0; i < _sightConeAngles.Length; i++)
             {
-                _raycastHit = Physics2D.Raycast
-                (
-                origin: transform.position,
-                direction: _sightConeAngles[i],
-                distance: _detectionRadius,
-                layerMask: _layers
-                );
+                RaycastHit2D raycastHit = Physics2D.Raycast
+                 (
+                 origin: transform.position,
+                 direction: _sightConeAngles[i],
+                 distance: _detectionRadius,
+                 layerMask: _layers
+                 );
 
-                if (_raycastHit.collider != null && _raycastHit.collider.gameObject.layer == 7)
+                if (raycastHit.collider != null && raycastHit.collider.gameObject.layer == 7)
                 {
-                    _aiPath.enabled = true;
                     _enemyState = EnemyState.chasing;
                     return;
                 }
             }
-            _aiPath.enabled = true;
             _enemyState = EnemyState.patrolling;
         }
     }

@@ -201,7 +201,7 @@ Transform:
   m_GameObject: {fileID: 84269494}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.38, y: -8.64, z: 0}
+  m_LocalPosition: {x: 6.42, y: -8.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1352,7 +1352,7 @@ MonoBehaviour:
   _idlingTime: 1
   _maxSightAngle: 45
   _detectionRadius: 10
-  _detectionTime: 0.1
+  _detectionTime: 0.25
   _patrolSpeed: 5
   _chaseSpeed: 10
   _aggressionTime: 2
