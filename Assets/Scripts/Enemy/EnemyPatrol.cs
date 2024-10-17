@@ -218,6 +218,11 @@ public class EnemyPatrol : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
 
+        foreach (Vector3 vect in _sightConeAngles)
+        {
+            Gizmos.DrawLine(vect * _detectionRadius + transform.position , transform.position);
+        }
+
         foreach (Transform point in _points)
         {
             Gizmos.DrawSphere(point.position, 0.5f);
