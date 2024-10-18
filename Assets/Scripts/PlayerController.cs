@@ -8,15 +8,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] new Rigidbody2D rigidbody;
-    [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] Animator animator;
-    [SerializeField] GameObject hat;
+    new Rigidbody2D rigidbody;
+    SpriteRenderer spriteRenderer;
+    Animator animator;
+    GameObject hat;
 
     [Header("General")]
     [SerializeField] bool smoothMovement;
     [SerializeField] float speed = 5;
-
 
     bool canMoove = true;
 
@@ -26,11 +25,6 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         hat = GetComponentsInChildren<SpriteRenderer>().Where(component => component.gameObject != this.gameObject).First().gameObject;
-    }
-
-    void Start()
-    {
-        
     }
 
     void Update()
@@ -52,7 +46,13 @@ public class PlayerController : MonoBehaviour
         if (canMoove)
         {
             rigidbody.velocity = Vector2.ClampMagnitude(new Vector2(xVelocity * speed, yVelocity * speed), speed);
+
+
         }
+
+        spriteRenderer.flipX = !(Input.GetAxis("Horizontal") < 0);
+        spriteRenderer.flipY = !(Input.GetAxis("Vertical") < 0);
+        animator.SetBool("Sideways", Mathf.Abs(Input.GetAxis("Vertical")) < Mathf.Abs(Input.GetAxis("Horizontal")));
 
         // animator.SetFloat("xVelocityAbs", Mathf.Abs(rb.velocity.x));
         // animator.SetFloat("yVelocity", rb.velocity.y);
