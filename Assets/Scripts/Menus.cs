@@ -12,6 +12,8 @@ public class Menus : MonoBehaviour
     [SerializeField] private GameObject _playObject;
     [SerializeField] private TMP_Text _timeText;
 
+    public static event Action<bool> OnPause;
+
     private void Awake()
     {
         EnemyPatrol.OnKill += Defeat;
@@ -24,12 +26,14 @@ public class Menus : MonoBehaviour
     {
         if (Time.timeScale > 0)
         {
+            OnPause?.Invoke(true);
             Time.timeScale = 0f;
             _pauseObject.SetActive(true);
             _playObject.SetActive(false);
         }
         else
         {
+            OnPause?.Invoke(false);
             Time.timeScale = 1f;
             _pauseObject.SetActive(false);
             _playObject.SetActive(true);

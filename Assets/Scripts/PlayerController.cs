@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool smoothMovement;
     [SerializeField] float speed = 5;
 
-    bool canMoove = true;
+    bool paused = false;
 
     private void Awake()
     {
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         hat = GetComponentsInChildren<SpriteRenderer>().Where(component => component.gameObject != this.gameObject).First().gameObject;
+        Menus.OnPause += SetPause;
     }
 
     void Update()
@@ -43,10 +44,9 @@ public class PlayerController : MonoBehaviour
              yVelocity = Input.GetAxisRaw("Vertical");
         }
 
-        if (canMoove)
+        if (!paused)
         {
             rigidbody.velocity = Vector2.ClampMagnitude(new Vector2(xVelocity * speed, yVelocity * speed), speed);
-
 
         }
 
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         // if (rb.velocity.x < 0) spriteRenderer.flipX = true;
         // else if (rb.velocity.x > 0) spriteRenderer.flipX = false;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !paused)
         {
             SendHat();
         }
@@ -81,8 +81,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void SetCanMoove(bool value)
+    void SetPause(bool value)
     {
-        canMoove = value;
+        paused = value;
     }
 }
