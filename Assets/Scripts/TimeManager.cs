@@ -11,22 +11,25 @@ public class TimeManager : MonoBehaviour
     public static event Action<float> UpdateTimer;
     public static event Action OnLose;
 
-    // Start is called before the first frame update
     void Start()
     {
         time = maxTime;
-        Destroy(this, maxTime);
     }
 
     private void Update()
     {
         time -= Time.deltaTime;
         UpdateTimer?.Invoke(time);
+        
+        if (time <= 0)
+        {
+            TimedOut();
+        }
     }
 
-    // Update is called once per frame
-    private void OnDestroy()
+    void TimedOut()
     {
         OnLose?.Invoke();
+        Destroy(gameObject);
     }
 }
