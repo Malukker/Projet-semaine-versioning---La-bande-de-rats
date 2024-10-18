@@ -7,11 +7,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     private GameObject _player;
-    [SerializeField] private GameObject _pauseMenu, _pauseButton;
+    [SerializeField] private GameObject _pauseObject, _playObject;
 
     public GameObject Player {  get { return _player; } }
-    public GameObject PauseMenu { get { return _pauseMenu; } }
-    public GameObject PauseButton { get { return _pauseButton; } }
+    public GameObject PauseMenu { get { return _pauseObject; } }
+    public GameObject PauseButton { get { return _playObject; } }
 
     public void Awake()
     {

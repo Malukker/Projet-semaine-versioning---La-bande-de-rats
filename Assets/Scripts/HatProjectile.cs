@@ -68,5 +68,6 @@ public class HatProjectile : MonoBehaviour
     void OnHitWall(Vector2 position)
     {
         HitWall?.Invoke(this);
+        Debug.Log("hit wall");
     }
 }

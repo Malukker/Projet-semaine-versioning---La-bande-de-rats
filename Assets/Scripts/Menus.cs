@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Menus : MonoBehaviour
 {
-    private GameObject _pauseMenu;
-    private GameObject _pauseButton;
+    private GameObject _pauseObject;
+    private GameObject _playObject;
 
     private void Awake()
     {
-        _pauseMenu = GameManager.Instance.PauseMenu;
-        _pauseButton = GameManager.Instance.PauseButton;
+        _pauseObject = GameManager.Instance.PauseMenu;
+        _playObject = GameManager.Instance.PauseButton;
     }
 
     public void PauseTheGame()
@@ -18,14 +18,14 @@ public class Menus : MonoBehaviour
         if (Time.timeScale > 0)
         {
             Time.timeScale = 0f;
-            _pauseMenu.SetActive(true);
-            _pauseButton.SetActive(false);
+            _pauseObject.SetActive(true);
+            _playObject.SetActive(false);
         }
         else
         {
             Time.timeScale = 1f;
-            _pauseMenu.SetActive(false);
-            _pauseButton.SetActive(true);
+            _pauseObject.SetActive(false);
+            _playObject.SetActive(true);
         }
     } 
 
