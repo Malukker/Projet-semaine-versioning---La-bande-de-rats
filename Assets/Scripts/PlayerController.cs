@@ -71,7 +71,6 @@ public class PlayerController : MonoBehaviour
         if (hat)
         {
             hat.transform.SetParent(null, true);
-            hat.transform.localScale = Vector3.one;
 
             Vector2 offset = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position; 
             Quaternion direction = Quaternion.LookRotation(Vector3.forward, offset); // * Quaternion.Euler(0, 0, 90);
