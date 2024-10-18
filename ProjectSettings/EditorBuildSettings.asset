@@ -8,9 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: a1f9e6f34c67256478ac4553c33dfa3c
-  - enabled: 0
-    path: Assets/Scenes/Arthur2.unity
-    guid: d5b2e99d040b72047a0cbad0dbfac67c
   - enabled: 1
     path: Assets/Scenes/DefeatScreen.unity
     guid: be50c091f4eb1d3439fc0e284a2ee2d9
