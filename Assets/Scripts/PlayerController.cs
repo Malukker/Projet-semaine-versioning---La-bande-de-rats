@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject hat;
 
     [Header("General")]
+    [SerializeField] bool smoothMovement;
     [SerializeField] float speed = 5;
 
 
@@ -34,11 +35,19 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // float xVelocity = Input.GetAxisRaw("Horizontal");
-        // float yVelocity = Input.GetAxisRaw("Vertical");
+        float xVelocity;
+        float yVelocity;
 
-        float xVelocity = Input.GetAxis("Horizontal");
-        float yVelocity = Input.GetAxis("Vertical");
+        if (smoothMovement)
+        {
+             xVelocity = Input.GetAxis("Horizontal");
+             yVelocity = Input.GetAxis("Vertical");
+        }
+        else
+        {
+             xVelocity = Input.GetAxisRaw("Horizontal");
+             yVelocity = Input.GetAxisRaw("Vertical");
+        }
 
         if (canMoove)
         {
