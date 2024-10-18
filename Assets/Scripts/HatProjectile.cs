@@ -54,7 +54,7 @@ public class HatProjectile : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Add hat to enemy");
+            Debug.Log("^^^^^^ CHANGE CONDITION TO ENEMY ABOVE ^^^^^^");
             // Add hat to enemy (cat) -> must have rb2d to generate trigger event
         }
     }
