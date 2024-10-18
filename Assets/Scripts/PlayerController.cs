@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 [RequireComponent(typeof(SpriteRenderer), typeof(Animator))]
@@ -50,15 +51,32 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        spriteRenderer.flipX = !(Input.GetAxis("Horizontal") < 0);
-        spriteRenderer.flipY = !(Input.GetAxis("Vertical") < 0);
-        animator.SetBool("Sideways", Mathf.Abs(Input.GetAxis("Vertical")) < Mathf.Abs(Input.GetAxis("Horizontal")));
+        if (Mathf.Abs(xVelocity) > Mathf.Abs(yVelocity))
+        {
+            if (Input.GetAxis("Horizontal") < 0)
+            { 
+                transform.rotation = Quaternion.Euler(0, 0, -90);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 90);
+            }
+        }
+        else
+        {
+            if (Input.GetAxis("Vertical") < 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);   
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 180);
+            }
+        }
 
-        // animator.SetFloat("xVelocityAbs", Mathf.Abs(rb.velocity.x));
-        // animator.SetFloat("yVelocity", rb.velocity.y);
-
-        // if (rb.velocity.x < 0) spriteRenderer.flipX = true;
-        // else if (rb.velocity.x > 0) spriteRenderer.flipX = false;
+        // spriteRenderer.flipX = (Input.GetAxis("Horizontal") > 0);
+        // spriteRenderer.flipY = (Input.GetAxis("Vertical") > 0);
+        // animator.SetBool("Sideways", Mathf.Abs(Input.GetAxis("Vertical")) < Mathf.Abs(Input.GetAxis("Horizontal")));
 
         if (Input.GetKeyDown(KeyCode.Space) && !paused)
         {
