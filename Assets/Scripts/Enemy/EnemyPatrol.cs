@@ -1,4 +1,5 @@
 using Pathfinding;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -15,7 +16,6 @@ public class EnemyPatrol : MonoBehaviour
     private int _currentPatrolObjective;
 
     [Header("Balancing Parameters")]
-    [SerializeField] private float _idlingTime;
     [SerializeField, Range (1, 180)] private int _maxSightAngle;
     [SerializeField] private float _detectionRadius;
     [SerializeField] private float _detectionTime;
@@ -23,6 +23,7 @@ public class EnemyPatrol : MonoBehaviour
     [SerializeField] private float _patrolSpeed, _detectionSpeed, _chaseSpeed;
     [SerializeField] private float _aggressionTime;
     private float _aggressionTimeProgress = 0;
+    [SerializeField] private float _idlingTime;
     [SerializeField] private float _idlingTimeOnHat; 
 
     private Vector3[] _sightConeAngles;
@@ -39,6 +40,7 @@ public class EnemyPatrol : MonoBehaviour
     };
     private EnemyState _enemyState;
 
+    public static event Action OnKill;
     private void Awake()
     {
         HatProjectile.HitWall += HatDetected;
@@ -179,7 +181,11 @@ public class EnemyPatrol : MonoBehaviour
     {
         _destinationSetter.target = _player;
         _aiPath.maxSpeed = _chaseSpeed;
-        if (Vector2.Distance(transform.position, _player.position) > _detectionRadius)
+        if (Vector2.Distance(transform.position, _player.position) < .5f)
+        {
+            OnKill?.Invoke();
+        }
+            if (Vector2.Distance(transform.position, _player.position) > _detectionRadius)
         {
             _aggressionTimeProgress += Time.deltaTime;
         }
@@ -207,6 +213,7 @@ public class EnemyPatrol : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, _destinationSetter.target.gameObject.transform.position) < 0.5f)
         {
+            _destinationSetter.target.gameObject.transform.parent = transform;
             StartCoroutine(IdleOnHat());
             _enemyState = EnemyState.idling;
         }
@@ -220,7 +227,7 @@ public class EnemyPatrol : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.cyan;
 
         if(_sightConeAngles != null) 
         {
@@ -232,7 +239,7 @@ public class EnemyPatrol : MonoBehaviour
 
         foreach (Transform point in _points)
         {
-            Gizmos.DrawSphere(point.position, 0.5f);
+            Gizmos.DrawSphere(point.position, 0.1f);
         }
     }
 }

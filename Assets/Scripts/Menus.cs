@@ -14,6 +14,7 @@ public class Menus : MonoBehaviour
 
     private void Awake()
     {
+        EnemyPatrol.OnKill += Defeat;
         VictoryZone.OnVictory += Victory;
         TimeManager.OnLose += Defeat;
         TimeManager.UpdateTimer += UpdateTime;
@@ -37,12 +38,12 @@ public class Menus : MonoBehaviour
 
     public void Victory()
     {
-        SceneManager.LoadScene("VictoryScreen");
+        SceneManager.LoadScene(3);
     }
 
     public void Defeat()
     {
-        SceneManager.LoadScene("DefeatScreen");
+        SceneManager.LoadScene(1);
     }
 
     public void UpdateTime(float i)

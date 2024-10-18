@@ -50,15 +50,6 @@ public class HatProjectile : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("^^^^^^ CHANGE CONDITION TO ENEMY ABOVE ^^^^^^");
-            // Add hat to enemy (cat) -> must have rb2d to generate trigger event
-        }
-    }
-
     public void StartMoving()
     {
         move = true;
