@@ -47,10 +47,7 @@ public class EnemyPatrol : MonoBehaviour
     void Start()
     {
         _player = GameManager.Instance.Player.transform;
-        _sightConeAngles = new Vector3[_maxSightAngle];
-
-        _destinationSetter.target = _points[_currentPatrolObjective];
-        _aiPath.maxSpeed = _patrolSpeed;
+        _sightConeAngles = new Vector3[_maxSightAngle];      
     }
 
     void Update()
@@ -104,25 +101,31 @@ public class EnemyPatrol : MonoBehaviour
 
     void CheckForPlayerInSight()
     {
-        for (int i = 0; i < _sightConeAngles.Length; i++)
+        if (_enemyState != EnemyState.fetching)
         {
-            RaycastHit2D raycastHit = Physics2D.Raycast
-                (
-                origin: transform.position,
-                direction: _sightConeAngles[i],
-                distance: _detectionRadius,
-                layerMask: _layers
-                );
-            if (raycastHit.collider != null && raycastHit.collider.gameObject.layer == 7)
+            for (int i = 0; i < _sightConeAngles.Length; i++)
             {
-                _enemyState = EnemyState.wary;
-                return;
+                RaycastHit2D raycastHit = Physics2D.Raycast
+                    (
+                    origin: transform.position,
+                    direction: _sightConeAngles[i],
+                    distance: _detectionRadius,
+                    layerMask: _layers
+                    );
+                if (raycastHit.collider != null && raycastHit.collider.gameObject.layer == 7)
+                {
+                    _enemyState = EnemyState.wary;
+                    return;
+                }
             }
         }
     }
 
     void Patrol()
     {
+        _aiPath.maxSpeed = _patrolSpeed;
+        _destinationSetter.target = _points[_currentPatrolObjective];
+
         if (Vector2.Distance(_points[_currentPatrolObjective].position, transform.position) < .25f)
         {
             ChangePatrolObjective();
@@ -192,8 +195,9 @@ public class EnemyPatrol : MonoBehaviour
 
     void HatDetected(HatProjectile hat)
     {
-        if(Vector2.Distance(hat.gameObject.transform.position, transform.position) > _detectionRadius)
+        if (Vector2.Distance(hat.gameObject.transform.position, transform.position) < _detectionRadius)
         {
+            Debug.Log("hat detected");
             _destinationSetter.target = hat.gameObject.transform;
             _enemyState = EnemyState.fetching;
         }
@@ -218,9 +222,12 @@ public class EnemyPatrol : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
 
-        foreach (Vector3 vect in _sightConeAngles)
+        if(_sightConeAngles != null) 
         {
-            Gizmos.DrawLine(vect * _detectionRadius + transform.position , transform.position);
+            foreach (Vector3 vect in _sightConeAngles)
+            {
+                Gizmos.DrawLine(vect * _detectionRadius + transform.position, transform.position);
+            }
         }
 
         foreach (Transform point in _points)
