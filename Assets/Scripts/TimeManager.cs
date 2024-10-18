@@ -21,16 +21,12 @@ public class TimeManager : MonoBehaviour
     private void Update()
     {
         time -= Time.deltaTime;
-        if (time < 0)
-        {
-            time = 0;
-        }
-        UpdateTimer.Invoke(time);
+        UpdateTimer?.Invoke(time);
     }
 
     // Update is called once per frame
     private void OnDestroy()
     {
-        OnLose.Invoke();
+        OnLose?.Invoke();
     }
 }
