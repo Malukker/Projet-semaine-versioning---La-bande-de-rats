@@ -20,7 +20,7 @@ public class EnemyPatrol : MonoBehaviour
     [SerializeField] private float _detectionRadius;
     [SerializeField] private float _detectionTime;
     private float _detectionTimeProgress = 0;
-    [SerializeField] private float _patrolSpeed, _chaseSpeed;
+    [SerializeField] private float _patrolSpeed, _detectionSpeed, _chaseSpeed;
     [SerializeField] private float _aggressionTime;
     private float _aggressionTimeProgress = 0;
     [SerializeField] private float _idlingTimeOnHat; 
@@ -147,7 +147,7 @@ public class EnemyPatrol : MonoBehaviour
 
     void DetectingMode()
     {
-        _aiPath.maxSpeed = 0;
+        _aiPath.maxSpeed = _detectionSpeed;
 
         _detectionTimeProgress += Time.deltaTime;
         if (_detectionTimeProgress >= _detectionTime)
